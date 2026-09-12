@@ -1,0 +1,37 @@
+name: Fraud Detection Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build production Docker image
+        run: |
+          docker build -t fraud-detection-api:latest .
+
+      - name: Start production container
+        run: |
+          docker run -d \
+            --name fraud-api \
+            -p 8000:8000 \
+            fraud-detection-api:latest
+
+      - name: Deployment health check
+        run: |
+          sleep 8
+          curl --fail http://127.0.0.1:8000/
+
+      - name: Show container status
+        run: |
+          docker ps
+
+      - name: Clean up
+        if: always()
+        run: |
+          docker rm -f fraud-api || true
