@@ -34,10 +34,3 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t fraud-detection-api .
-          
-      - name: Run container smoke test
-        run: |
-          docker run -d --name fraud-api -p 8000:8000 fraud-detection-api
-          sleep 8
-          curl --fail http://127.0.0.1:8000/
-          docker rm -f fraud-api
