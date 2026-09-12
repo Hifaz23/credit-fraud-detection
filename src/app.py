@@ -18,7 +18,7 @@ initialize_database()
 
 @app.get("/")
 def home():
-    return {"message": "BROKEN API"}
+    return {"message": "Fraud Detection API is running"}
 
 
 @app.post("/predict", response_model=PredictionResponse)
