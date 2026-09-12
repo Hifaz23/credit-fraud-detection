@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local databases / runtime state
+fraud_predictions.db
+mlflow.db
+mlruns/
+
+# Local environment / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# Large local dataset
+creditcard.csv
+
+# OS/editor files
+.DS_Store
+Thumbs.db
