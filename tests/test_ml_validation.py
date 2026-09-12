@@ -37,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 def test_dataset_schema():
     df = pd.read_csv(
-        BASE_DIR / "creditcard.csv",
+        BASE_DIR / "tests" / "fixtures" / "creditcard_sample.csv",
         nrows=10
     )
 
@@ -52,7 +52,7 @@ def test_dataset_schema():
 
 def test_target_is_binary():
     df = pd.read_csv(
-        BASE_DIR / "creditcard.csv",
+        BASE_DIR / "tests" / "fixtures" / "creditcard_sample.csv",
         usecols=["Class"]
     )
 
@@ -63,7 +63,7 @@ def test_model_matches_config_feature_count():
 
 def test_sample_data_has_no_missing_features():
     df = pd.read_csv(
-        BASE_DIR / "creditcard.csv",
+        BASE_DIR / "tests" / "fixtures" / "creditcard_sample.csv",
         nrows=1000#1000 rows only bcz dataset is too large so it might take more time 
     )
 
