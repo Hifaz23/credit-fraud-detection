@@ -1,0 +1,27 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+
+type: command
+name: fraud_train_component
+display_name: Fraud Train Component
+version: "2"
+description: Train a small fraud classifier and output predictions plus the trained model.
+
+inputs:
+  data:
+    type: uri_file
+
+outputs:
+  predictions:
+    type: uri_folder
+  model_output:
+    type: uri_folder
+
+code: ./
+
+environment: azureml://registries/azureml/environments/sklearn-1.5/labels/latest
+
+command: >-
+  python azure_train.py
+  --data ${{inputs.data}}
+  --predictions ${{outputs.predictions}}
+  --model_output ${{outputs.model_output}}

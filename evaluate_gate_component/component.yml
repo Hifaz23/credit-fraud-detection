@@ -1,0 +1,19 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandComponent.schema.json
+
+type: command
+
+name: fraud_evaluate_gate_component
+display_name: Fraud Evaluate Gate Component
+version: 1
+
+inputs:
+  predictions:
+    type: uri_folder
+
+code: ./
+
+environment: azureml://registries/azureml/environments/sklearn-1.5/labels/latest
+
+command: >-
+  python evaluate_gate.py
+  --predictions ${{inputs.predictions}}
