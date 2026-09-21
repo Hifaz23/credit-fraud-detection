@@ -5,7 +5,7 @@ import src.database as database
 
 def test_initialize_database_creates_predictions_table(tmp_path, monkeypatch):
     test_db = tmp_path / "test_predictions.db"
-
+#redirect database operations to a temporary test file
     monkeypatch.setattr(database, "DATABASE", test_db)
 
     database.initialize_database()
