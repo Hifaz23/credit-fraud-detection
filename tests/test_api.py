@@ -86,7 +86,13 @@ def test_threshold_in_response(monkeypatch):
         "save_prediction",
         lambda **kwargs: None
     )
-
+    response = client.post("/predict", json=make_valid_transaction())
+    result = response.json()
+    
+    assert response.status_code == 200
+    assert "threshold" in result
+    assert isinstance(result["threshold"], (int, float))
+    
 def test_missing_feature_returns_422(monkeypatch):
     monkeypatch.setattr(
         app_module,
