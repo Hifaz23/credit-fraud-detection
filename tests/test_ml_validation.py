@@ -66,5 +66,5 @@ def test_sample_data_has_no_missing_features():
         BASE_DIR / "tests" / "fixtures" / "creditcard_sample.csv",
         nrows=1000#1000 rows only bcz dataset is too large so it might take more time 
     )
-
+#first any check if there is missing value column by column and then the 2nd one checks if there is any mising in whole row.
     assert not df[service.features].isnull().any().any()
